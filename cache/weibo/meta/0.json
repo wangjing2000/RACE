@@ -1,0 +1,48 @@
+{
+  "post_id": "3907393559904503",
+  "image_path": "images/62b31d36gw1exv2rkjkpmj208i0gvabr.jpg",
+  "caption": "【每日美图】西西里的希腊古城塞利侬特（Selinunte）",
+  "label": 0,
+  "split": "train",
+  "d_c": 512,
+  "text_entities": [
+    "每",
+    "日",
+    "美",
+    "图",
+    "西西",
+    "里",
+    "希",
+    "腊",
+    "塞利侬",
+    "特",
+    "西西里",
+    "塞利"
+  ],
+  "ocr_entities": [],
+  "ocr_blocks": [],
+  "region_boxes": [
+    [
+      73.36042022705078,
+      48.10028076171875,
+      244.10792541503906,
+      558.0044555664062
+    ]
+  ],
+  "region_scores": [
+    0.35945478081703186
+  ],
+  "counts": {
+    "N_t": 12,
+    "N_o": 1,
+    "N_r": 0,
+    "N_v": 1
+  },
+  "flags": {
+    "has_text_entity": true,
+    "has_region": true,
+    "has_ocr": false,
+    "has_ocr_entity": false,
+    "has_local": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "dataset": "Weibo",
+  "language": "zh",
+  "d_c": 512,
+  "total": 7959,
+  "newly_done": 6601,
+  "skipped": 1358,
+  "failed": 0,
+  "elapsed_sec": 30276.9
+}

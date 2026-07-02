@@ -1,0 +1,171 @@
+project:
+  name: RACE
+  seed: 66
+  device: cuda
+  deterministic: false
+
+paths:
+  pretrained_dir: pretrained
+  data_dir: data
+  cache_dir: cache
+  log_dir: logs
+  ckpt_dir: checkpoints
+  output_dir: outputs
+
+datasets:
+  Weibo:
+    language: zh
+    json_name: dataset_items_merged.json
+    images_dirname: images
+  Twitter:
+    language: en
+    json_name: dataset_items_merged.json
+    images_dirname: images
+  GossipCop:
+    language: en
+    json_name: dataset_items_merged.json
+    images_dirname: images
+  Weibo21:
+    language: zh
+    json_name: dataset_items_merged.json
+    images_dirname: images
+
+models:
+  clip:
+    zh: chinese-clip-vit-base-patch16
+    en: clip-vit-base-patch32
+  ner:
+    zh: bert-base-chinese-ner
+    en: bert-base-NER
+  faster_rcnn: fasterrcnn_resnet50_fpn_coco-258fb6c6.pth
+  paddleocr:
+    zh:
+      det: ch_PP-OCRv4_det_infer
+      rec: ch_PP-OCRv4_rec_infer
+      cls: ch_ppocr_mobile_v2.0_cls_infer
+    en:
+      det: en_PP-OCRv3_det_infer
+      rec: en_PP-OCRv4_rec_infer
+      cls: ch_ppocr_mobile_v2.0_cls_infer
+
+split:
+  seed: 66
+  ratios: [0.8, 0.1, 0.1]
+  stratified: true
+
+dims:
+  d_c: 512
+  d_l: 256
+  d_g: 256
+  d_f: 256
+  d_r: 128
+
+hparams:
+  gamma: 5.0
+  delta: 0.6
+  beta: 0.5
+  lambda_real: 0.3
+  dropout: 0.2
+
+fine_grained:
+  N_t: 12
+  N_o: 15
+  N_r: 10
+  tfidf_topk: 5
+
+preprocess:
+  faster_rcnn:
+    top_n: 15
+    score_thresh: 0.3
+    min_box_size: 8
+  ocr:
+    use_gpu: true
+    drop_score: 0.5
+    max_text_len: 200
+  cache_format: npz
+  resume: true
+  batch_log_every: 200
+
+train:
+  batch_size: 32
+  num_workers: 0
+  epochs: 40
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  optimizer: adamw
+  scheduler: cosine
+  warmup_ratio: 0.1
+  grad_clip: 1.0
+  amp: true
+  patience: 8
+  pin_memory: true
+  monitor: f1
+
+checkpoint:
+  max_keep: 3
+  best_name: best_model.pth
+  resume: true
+
+evaluate:
+  decimals: 4
+  class_names: ["non-rumor", "rumor"]
+
+visualize:
+  tsne:
+    perplexity: 30
+    n_iter: 1000
+    learning_rate: auto
+  dpi: 300
+  cmap_density: viridis
+  cmap_conflict: Reds
+
+ablation:
+  full:
+    use_relevance: true
+    use_conflict: true
+    use_gate: true
+    use_align: true
+    use_ocr: true
+    use_region: true
+  wo_relevance:
+    use_relevance: false
+    use_conflict: true
+    use_gate: true
+    use_align: true
+    use_ocr: true
+    use_region: true
+  wo_conflict:
+    use_relevance: true
+    use_conflict: false
+    use_gate: true
+    use_align: true
+    use_ocr: true
+    use_region: true
+  wo_gate:
+    use_relevance: true
+    use_conflict: true
+    use_gate: false
+    use_align: true
+    use_ocr: true
+    use_region: true
+  wo_align:
+    use_relevance: true
+    use_conflict: true
+    use_gate: true
+    use_align: false
+    use_ocr: true
+    use_region: true
+  wo_ocr:
+    use_relevance: true
+    use_conflict: true
+    use_gate: true
+    use_align: true
+    use_ocr: false
+    use_region: true
+  wo_region:
+    use_relevance: true
+    use_conflict: true
+    use_gate: true
+    use_align: true
+    use_ocr: true
+    use_region: false

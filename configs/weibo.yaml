@@ -1,0 +1,43 @@
+# configs/weibo.yaml
+project:
+  seed: 66 #42
+
+data:
+  dataset: Weibo
+
+dims:
+  d_c: 512
+  d_l: 256
+  d_g: 256
+  d_f: 256
+  d_r: 128
+
+hparams:
+  gamma: 5.0
+  delta: 0.5
+  beta: 0.5
+  lambda_real: 0.5
+  dropout: 0.2
+
+train:
+  epochs: 50
+  batch_size: 256    #32
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  num_workers: 0
+  use_pos_weight: true
+  patience: 10
+  use_tqdm: true
+
+paths:
+  cache_dir: cache
+  checkpoint_dir: checkpoints
+  log_dir: logs
+
+ablation:
+  use_region: true
+  use_ocr: true
+  use_relevance: true
+  use_conflict: true
+  use_gate: true
+  use_align: true

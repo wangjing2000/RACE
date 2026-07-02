@@ -1,0 +1,23 @@
+
+# torch==2.7.0+cu126        --index-url https://download.pytorch.org/whl/cu126
+# torchvision==0.22.0+cu126 --index-url https://download.pytorch.org/whl/cu126
+# paddlepaddle-gpu==2.6.1   (按 CUDA 版本从官方源安装)
+
+
+transformers==4.44.2
+tokenizers==0.19.1
+paddleocr==2.7.3
+jieba==0.42.1                 # 中文分词/关键词（TF-IDF 补充）
+
+
+numpy==1.26.4
+scikit-learn==1.4.2           # t-SNE、TF-IDF、metrics
+scipy==1.13.1
+matplotlib==3.8.4
+seaborn==0.13.2
+
+
+Pillow==10.3.0
+opencv-python==4.6.0.66       # 区域裁剪
+PyYAML==6.0.1
+tqdm==4.66.4
